@@ -1,33 +1,36 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class main {
 
-    public static void main (String[]args){
-        ArrayList<Integer> primes = Primes.eratostenes(1000);
-        //ArrayList<Integer> sophieGermain = Primes.sophieGermainPrimes(primes,100);
-        prettyPrint(primes);
-        //prettyPrint(sophieGermain);
-        Primes.BigPrimes();
-    }
+    public static void main(String[] args) {
 
-    public static void prettyPrint(ArrayList<Integer> list)
-    {
-        System.out.println("Num. of elements: " + list.size());
-        int i;
-        for(i = 0; i<list.size(); i +=4){
-            if(i + 4 < list.size())
-            {
-                System.out.print(list.get(i) + "\t" + list.get(i + 1) + "\t" + list.get(i + 2) + "\t" + list.get(i + 3));
-                System.out.println();
-            }
-            else{
-                while (i < list.size()){
-                    System.out.print(list.get(i) + "\t");
-                    i ++;
-                }
-                System.out.println();
+        /*
+         * Start configuration Section
+         * If the file location is not stored in ProjectResources please provide absolute Paths
+         */
+        final int KeySize = 1024;
+        final String PublicKeyFile = "pk.txt";
+        final String PrivateKeyFile = "sk.txt";
+        final String EncryptedMessageFile = "chiffre.txt";
+        final String MessageFile = "message.txt";
 
-            }
+        /*
+         * End configuration Section
+         */
+
+        RSA.RSAKeyPair keyPair = RSA.genRSAKeyPair(KeySize);
+
+        try{
+            BufferedWriter writer = new BufferedWriter(new FileWriter(PublicKeyFile, StandardCharsets.UTF_8));
+            writer.write("");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
