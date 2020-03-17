@@ -2,9 +2,21 @@ import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.Random;
 
+/**
+ * @author Kevin Zellweger
+ * @Date 17.03.20
+ *
+ * This Class implements all Mathematical needs for RSA and provides them as static methods
+ */
+
 public class RSA {
 
-
+    /**
+     * Encrypts the given message and returns the result as an BigInter Array where each Character is an Element of the Array
+     * @param message: Message to be encrypted
+     * @param pk: Public RSA Key
+     * @return BigInter[] encrypted Message
+     */
     public static BigInteger[] encryptMessage(String message, Tuple<BigInteger, BigInteger> pk) {
         char[] charWise = message.toCharArray();
         BigInteger[] chiffre = new BigInteger[charWise.length];
@@ -16,6 +28,12 @@ public class RSA {
         return chiffre;
     }
 
+    /**
+     * Decrypts the provided Message and Returns the original String
+     * @param encryptedMessage: BigInteger[] character wise encrypted Message as BigInteger Values
+     * @param sk: Private RSA Key
+     * @return Original String
+     */
     public static String decrypttMessage(BigInteger[] encryptedMessage, Tuple<BigInteger, BigInteger> sk) {
         char[] decryptedChars = new char[encryptedMessage.length];
         StringBuilder strb = new StringBuilder();
@@ -30,6 +48,14 @@ public class RSA {
         return decryptedMessage;
     }
 
+    /**
+     * Implementation of the fast exponentiation algorithm
+     * @param k: base
+     * @param key: Tuple with exponent and modulo factor
+     *           key.x = m (modulo)
+     *           key.y = e (exponent)
+     * @return x^e mod m
+     */
     public static BigInteger fastExponentiation(BigInteger k, Tuple<BigInteger, BigInteger> key) {
         int l = key.y.bitLength() - 1;
         BigInteger h = BigInteger.ONE;
@@ -47,9 +73,9 @@ public class RSA {
 
 
     /**
-     * Generate a valid RSA Key Pair of the given Bitlength
+     * Generate a valid RSA Key Pair of the given Size
      *
-     * @param bitLength
+     * @param bitLength: bit length of the Keypairs
      * @return Tuple wit PK (n,e) and SK (n,d)
      */
     public static RSAKeyPair genRSAKeyPair(int bitLength) {
@@ -75,7 +101,8 @@ public class RSA {
     /**
      * Generate a random Prime Number in the given Size
      *
-     * @param bitLength size of the prime in Bit
+     * @param bitLength: size of the prime in Bit
+     *                 will be dived by 2 to reach the size in the product
      * @return the generated Prime number
      */
     public static BigInteger genPrime(int bitLength) {
@@ -101,7 +128,6 @@ public class RSA {
         y0 = BigInteger.ZERO;
         x1 = BigInteger.ZERO;
         y1 = BigInteger.ONE;
-        //TODO: Define criteria if not possible to rech e * d =m 1
         while (!b.equals(BigInteger.ZERO)) {
             tempX0 = x0;
             tempY0 = y0;
@@ -120,6 +146,9 @@ public class RSA {
         return y0;
     }
 
+    /**
+     * Internal Class which represents the RSA Key-Pairs as tuples
+     */
     public static class RSAKeyPair {
         private Tuple<BigInteger, BigInteger> pk;
         private Tuple<BigInteger, BigInteger> sk;

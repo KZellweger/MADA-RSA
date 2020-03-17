@@ -8,6 +8,14 @@ import java.math.BigInteger;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+/**
+ * @author Kevin Zellweger
+ * @Date 17.03.20
+ *
+ * Graphical User Interface to Test the RSA Implementation
+ */
+
+
 public class RootPanel extends GridPane {
 
     private String pkFile;
@@ -187,7 +195,6 @@ public class RootPanel extends GridPane {
             keyPair.setText("");
         });
     }
-
 
     private void writeFile(String path, String content) {
         try {
