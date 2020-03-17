@@ -1,4 +1,4 @@
-#RSA Application
+# RSA Application
 
 >This Small Application implements a character wise encryption using the RSA algorithm.  
 The implementation is not either save or performance optimized.  
@@ -6,7 +6,7 @@ The only purpose is the understanding of the mathematical concepts of RSA.
 
 ![screenshot](./src/main/resources/Screenshot.png)
 
-##Usage
+## Usage
 
 All Functions can be directly Tested within the GUI.
 
@@ -19,6 +19,6 @@ All Functions can be directly Tested within the GUI.
 - Encrypt Message: Encrypts the Message which is entered in the Text-Area. This Area is freely editable.
 - Decrypt Message: Decrypts the Message which is displayed ind the Text-Area. This Area is not editable.
 
-##Dependencies
+## Dependencies
 - Java 11
 - Junit 4.12
